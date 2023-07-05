@@ -27,7 +27,6 @@ export function App() {
   const [query, setQuery] = useState('');
   const [totalHits, setTotalHits] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
   const [showModal, setShowModal] = useState(false);
   const [modalImage, setModalImage] = useState({});
 
@@ -65,16 +64,12 @@ export function App() {
         const { hits, totalHits } = await fetchPhotos(query, page);
 
         if (totalHits < 1) {
-          setError(`${query} is not found`);
           toast.error(`${query} is not found`, toastConfig);
-        } else {
-          setError(null);
         }
 
         setPhotos(prevState => [...prevState, ...hits]);
         setTotalHits(prevState => totalHits);
       } catch (error) {
-        setError('Something went wrong');
         toast.error('Something went wrong', toastConfig);
       } finally {
         setLoading(false);
