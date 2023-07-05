@@ -16,7 +16,7 @@ export function Searchbar({ handleSubmit }) {
       return;
     }
 
-    handleSubmit(e);
+    handleSubmit(e.target.elements.query.value);
 
     setValue('');
   };
@@ -33,8 +33,8 @@ export function Searchbar({ handleSubmit }) {
         <input
           className="searchForm-input"
           type="text"
-          autocomplete="off"
-          autofocus
+          autoComplete="off"
+          autoFocus
           placeholder="Search images and photos"
           value={value}
           name="query"

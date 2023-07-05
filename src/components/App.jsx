@@ -31,13 +31,13 @@ export function App() {
   const [showModal, setShowModal] = useState(false);
   const [modalImage, setModalImage] = useState({});
 
-  const handleSubmit = e => {
-    if (e.target.elements.query.value === query) {
+  const handleSubmit = searchQuery => {
+    if (searchQuery === query) {
       return;
     }
 
     setPage(1);
-    setQuery(e.target.elements.query.value);
+    setQuery(searchQuery);
     setPhotos([]);
   };
 
@@ -86,7 +86,7 @@ export function App() {
 
   return (
     <div>
-      <Searchbar handleSubmit={e => handleSubmit(e)} />
+      <Searchbar handleSubmit={handleSubmit} />
       {photos && <ImageGallery photos={photos} openModal={showModalWindow} />}
       {showModal && (
         <Modal hideModal={hideModalWindow} largeImage={modalImage} />
